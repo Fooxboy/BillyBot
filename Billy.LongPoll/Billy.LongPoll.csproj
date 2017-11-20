@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="VkNet" Version="1.29.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Billy.API\Billy.API.csproj" />
+    <ProjectReference Include="..\Billy.Models\Billy.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="xNet">
+      <HintPath>..\xNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
