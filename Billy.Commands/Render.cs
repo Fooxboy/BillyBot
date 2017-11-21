@@ -8,7 +8,7 @@ namespace Billy.Commands
 {
     public class Render
     {
-        public static List<string> Commands = null;
+        public static List<ICommand> Commands = null;
 
         public static void Initialization()
         {

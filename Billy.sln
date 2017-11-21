@@ -11,11 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.API", "Billy.API\Bill
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Models", "Billy.Models\Billy.Models.csproj", "{31B3121A-8CDE-4073-9EDC-9730025FB06A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Exceptions", "Billy.Exceptions\Billy.Exceptions.csproj", "{2C36DDF1-C298-4255-9D23-3F65A000E00C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Exceptions", "Billy.Exceptions\Billy.Exceptions.csproj", "{2C36DDF1-C298-4255-9D23-3F65A000E00C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Enums", "Billy.Enums\Billy.Enums.csproj", "{29AF893F-EEF9-4993-B000-B904735B2188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Enums", "Billy.Enums\Billy.Enums.csproj", "{29AF893F-EEF9-4993-B000-B904735B2188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Commands", "Billy.Commands\Billy.Commands.csproj", "{23E7DFA7-4EB5-40E2-BE64-2A51DC99C595}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Commands", "Billy.Commands\Billy.Commands.csproj", "{23E7DFA7-4EB5-40E2-BE64-2A51DC99C595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Data", "Billy.Data\Billy.Data.csproj", "{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,14 @@ Global
 		{23E7DFA7-4EB5-40E2-BE64-2A51DC99C595}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23E7DFA7-4EB5-40E2-BE64-2A51DC99C595}.Release|x64.ActiveCfg = Release|x64
 		{23E7DFA7-4EB5-40E2-BE64-2A51DC99C595}.Release|x64.Build.0 = Release|x64
+		{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}.Debug|x64.Build.0 = Debug|Any CPU
+		{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}.Release|x64.ActiveCfg = Release|Any CPU
+		{6D9D2FE3-5BAC-4A4F-91D0-99D950CE8658}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

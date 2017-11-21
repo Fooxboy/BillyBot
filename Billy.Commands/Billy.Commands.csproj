@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Billy.API\Billy.API.csproj" />
+    <ProjectReference Include="..\Billy.Data\Billy.Data.csproj" />
     <ProjectReference Include="..\Billy.Models\Billy.Models.csproj" />
   </ItemGroup>
 
