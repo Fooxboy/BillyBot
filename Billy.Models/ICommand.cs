@@ -7,6 +7,7 @@ namespace Billy.Models
 {
     public interface ICommand
     {
+        string Name { get; }
         string Help { get; }
         string FullHelp { get; }
         void Execute(Message message, string[] arguments);

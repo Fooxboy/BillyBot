@@ -6,8 +6,8 @@ namespace Billy.Data.Commands
 {
     public interface IDataCommand
     {
+        string Name { get;  }
         string Help { get; }
         string FullHelp { get; }
-
     }
 }

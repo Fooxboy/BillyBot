@@ -2,6 +2,7 @@
 using Billy.Models;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using Billy.Helpers;
 
 
 namespace Billy.Commands
@@ -31,7 +32,12 @@ namespace Billy.Commands
                     API.User.New(message.From);
                 if(!user.Ban)
                 {
-                    //Render;
+                    var commands = Render.Commands;
+                    foreach(var command in commands)
+                    {
+                        if (command.CanExecute(text[1]))
+                            command.Execute(message, text);
+                    }
                 }
             }
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Billy.Data
+namespace Billy.Helpers
 {
     public class Class1
     {
