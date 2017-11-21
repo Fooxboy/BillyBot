@@ -1,12 +1,20 @@
 ﻿using System;
 using Billy.Models;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 
 namespace Billy.Commands
 {
     public class Render
     {
+        public static List<string> Commands = null;
+
+        public static void Initialization()
+        {
+
+        }
+
         public static void Run(Message message)
         {
             string[] text = Split(message.ExtraFields.Text);
@@ -14,11 +22,13 @@ namespace Billy.Commands
             string name = text[0].ToLower();
             if(name == "билли"||name == "билли," || name == "бил" || name == "бил," || name == "билл" || name == "билл," || name == "billy" || name == "billy,")
             {
-                API.Message.Send(new Models.Params.MessageSendParams
+                var user = new API.User(message.From);
+                if (!user.Is)
+                    API.User.New(message.From);
+                if(!user.Ban)
                 {
-                    Message = "хуй",
-                    PeerId = message.PeerId
-                });
+                    //Render;
+                }
             }
         }
 

@@ -1,0 +1,89 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Billy.Enums;
+
+namespace Billy.API
+{
+    public class User : Models.User
+    {
+        private long _id;
+        public User(long id)
+        {
+            _id = id;
+        } 
+        Database.Methods method = new Database.Methods("Users");
+        public override long Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
+
+        public static void New(long id)
+        {
+            var method = new Database.Methods("Users");
+            string fields = @"`id`, `Name`";
+            string name = Data.GetVk().Users.Get(id).FirstName;
+            // string name = "чьлен";
+            string values = $@"'{id}', '{name}'";
+            method.Add(fields, values);
+        }
+
+        public override string Name
+        {
+            get
+            {
+                return (string)method.GetFromId(_id, "Name");
+            }set
+            {
+                method.EditField(_id, "Name", value);
+            }
+        }
+
+        public override bool Ban
+        {
+            get
+            {
+                return (int)method.GetFromId(_id, "Ban") == 1;
+            }set
+            {
+                int values = System.Convert.ToInt32(value);
+                method.EditField(_id, "Ban", values);
+            }
+        }
+
+        public override int Foxs
+        {
+            get
+            {
+                return (int)method.GetFromId(_id, "Money");
+            }set
+            {
+                method.EditField(_id, "Foxs", value);
+            }
+        }
+
+        public override bool Is
+        {
+            get
+            {
+                return method.Check(_id);
+            }
+        }
+
+        public override Enums.Billy.Donate Donate
+        {
+            get
+            {
+                int num = (int)method.GetFromId(_id, "Donate");
+                return (Enums.Billy.Donate)num;
+            }set
+            {
+                int donate = (int)value;
+                method.EditField(_id, "Donate", donate);
+            }
+        }
+    }
+}

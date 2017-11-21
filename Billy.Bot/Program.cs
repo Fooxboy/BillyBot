@@ -7,13 +7,14 @@ namespace Billy.Bot
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                Console.WriteLine("Hello World!");
-                Starter starter = new Starter();
-                starter.Start();
-            }
-           
+            Billy.API.Database.Methods methods = new API.Database.Methods("Users");
+            var result = methods.GetFromId(1, "Name");
+            Console.WriteLine(result);
+            API.User.New(228);
+            var user = new API.User(228);
+            Console.WriteLine(user.Name);
+            Console.WriteLine(user.Foxs);
+            Console.ReadLine();
         }
     }
 }
