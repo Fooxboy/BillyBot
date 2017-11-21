@@ -8,4 +8,8 @@
     <PackageReference Include="VkNet" Version="1.29.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Billy.Enums\Billy.Enums.csproj" />
+  </ItemGroup>
+
 </Project>

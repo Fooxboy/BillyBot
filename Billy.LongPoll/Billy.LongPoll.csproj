@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Billy.API\Billy.API.csproj" />
+    <ProjectReference Include="..\Billy.Exceptions\Billy.Exceptions.csproj" />
     <ProjectReference Include="..\Billy.Models\Billy.Models.csproj" />
   </ItemGroup>
 
