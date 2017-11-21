@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite" Version="1.0.106" />
-    <PackageReference Include="VkNet" Version="1.29.3" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Billy.API\Billy.API.csproj" />
     <ProjectReference Include="..\Billy.Models\Billy.Models.csproj" />
   </ItemGroup>
 

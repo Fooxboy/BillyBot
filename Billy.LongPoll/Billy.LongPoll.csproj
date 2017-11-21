@@ -11,14 +11,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Billy.API\Billy.API.csproj" />
+    <ProjectReference Include="..\Billy.Commands\Billy.Commands.csproj" />
     <ProjectReference Include="..\Billy.Exceptions\Billy.Exceptions.csproj" />
     <ProjectReference Include="..\Billy.Models\Billy.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="xNet">
-      <HintPath>..\xNet.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

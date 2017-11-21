@@ -1,4 +1,5 @@
 ﻿using System;
+using Billy.LongPoll;
 
 namespace Billy.Bot
 {
@@ -6,8 +7,13 @@ namespace Billy.Bot
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.ReadLine();
+            while (true)
+            {
+                Console.WriteLine("Hello World!");
+                Starter starter = new Starter();
+                starter.Start();
+            }
+           
         }
     }
 }
