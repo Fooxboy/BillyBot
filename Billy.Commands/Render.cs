@@ -12,7 +12,11 @@ namespace Billy.Commands
 
         public static void Initialization()
         {
-
+            List<ICommand> commands = new List<ICommand>()
+            {
+                new Test()
+            };
+            Render.Commands = commands;
         }
 
         public static void Run(Message message)

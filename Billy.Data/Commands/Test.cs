@@ -9,5 +9,7 @@ namespace Billy.Data.Commands
         public string Help => "Тестовая Функция";
 
         public string FullHelp => "Команда доступная только для тестеров. Отвечает какую-то дичь.";
+
+        public static string Complete = "Хуй";
     }
 }

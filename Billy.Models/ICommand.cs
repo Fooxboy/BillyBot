@@ -8,6 +8,7 @@ namespace Billy.Models
     public interface ICommand
     {
         string Help { get; }
+        string FullHelp { get; }
         void Execute(Message message, string[] arguments);
         List<Enums.Billy.Donate> Donate { get;}
     }
