@@ -9,8 +9,7 @@ namespace Billy.Bot
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Инициализация!");
-
+            Console.WriteLine("Инициализация....");
             Render.Initialization();
            // while (true)
           //  {

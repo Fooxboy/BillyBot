@@ -17,7 +17,8 @@ namespace Billy.Commands
             List<ICommand> commands = new List<ICommand>()
             {
                 new Test(),
-                new Profile()
+                new Profile(),
+                new About()
             };
             Render.Commands = commands;
         }
