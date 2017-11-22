@@ -1,10 +1,10 @@
 ﻿using System;
-using Billy.API;
 using Billy.Models.Params;
 using Billy.Models;
 using Newtonsoft.Json.Linq;
 using Billy.Exceptions;
 using Billy.Commands;
+using System.Threading;
 
 namespace Billy.LongPoll
 {
@@ -15,12 +15,21 @@ namespace Billy.LongPoll
         private string Key = null;
         private ulong? Pts;
 
-        public void Start()
+        public void Run()
         {
-            if(Server == null || Key == null)
+            while(true)
             {
-                SetKeyAndServer();
-            }
+                if (Server == null || Key == null)
+                {
+                    SetKeyAndServer();
+                }
+                Start();
+            }      
+        }
+
+        private void Start()
+        {
+            
             LongPollRoot model;
             try
             {
@@ -56,8 +65,8 @@ namespace Billy.LongPoll
                     long code = (long)update[0];          
                     if(code == 4)
                     {
-                        var message = new Models.Message();
-                        message.MessageId = System.Convert.ToUInt64((long)update[1]);
+                        var message = new Message();
+                        message.MessageId = Convert.ToUInt64((long)update[1]);
                         message.Flags = Convert.ToString((long)update[2]);
                         message.ExtraFields = new ExtraFields();
                         message.ExtraFields.PeerId = (long)update[3];
@@ -75,10 +84,21 @@ namespace Billy.LongPoll
                             message.Type = Enums.LongPoll.TypeMessage.Chat;
                         }
                         message.PeerId = message.ExtraFields.PeerId;
-                        Render.Run(message);     
+
+                        Thread threadRender = new Thread(new ParameterizedThreadStart(RunRender));
+                        threadRender.Name = "Render";
+                        Console.WriteLine("Выполнение потока Render");
+                        threadRender.Start(message);
+                             
                     }
                 }
             }
+        }
+
+        private void RunRender(object obj)
+        {
+            var message = (Message)obj;
+            Render.Run(message);
         }
         
         private void SetKeyAndServer()

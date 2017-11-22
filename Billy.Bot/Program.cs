@@ -1,5 +1,7 @@
 ﻿using System;
 using Billy.LongPoll;
+using Billy.Commands;
+using System.Threading;
 
 namespace Billy.Bot
 {
@@ -7,14 +9,21 @@ namespace Billy.Bot
     {
         static void Main(string[] args)
         {
-            Billy.API.Database.Methods methods = new API.Database.Methods("Users");
-            var result = methods.GetFromId(1, "Name");
-            Console.WriteLine(result);
-            API.User.New(228);
-            var user = new API.User(228);
-            Console.WriteLine(user.Name);
-            Console.WriteLine(user.Foxs);
-            Console.ReadLine();
+            Console.WriteLine("Инициализация!");
+
+            Render.Initialization();
+           // while (true)
+          //  {
+
+                Console.WriteLine("Хелло!");
+                var Starter = new Starter();
+                Thread threadLongPoll = new Thread(Starter.Run);
+                threadLongPoll.Name = "LongPoll";
+            Console.WriteLine("Старт потока LongPoll");
+                threadLongPoll.Start();
+
+           // }
+           
         }
     }
 }

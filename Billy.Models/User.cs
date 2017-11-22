@@ -8,7 +8,7 @@ namespace Billy.Models
     {
         public abstract long Id { get;}
         public abstract string Name { get; set; }
-        public abstract bool Is { get; }
+        //public abstract bool Is { get; }
         public abstract int Foxs { get; set; }
         public abstract bool Ban { get; set; }
         public abstract Enums.Billy.Donate Donate { get; set; }

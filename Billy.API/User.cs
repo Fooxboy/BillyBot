@@ -51,10 +51,10 @@ namespace Billy.API
         {
             get
             {
-                return (int)method.GetFromId(_id, "Ban") == 1;
+                return (long)method.GetFromId(_id, "Ban") == 1;
             }set
             {
-                int values = System.Convert.ToInt32(value);
+                int values = Convert.ToInt32(value);
                 method.EditField(_id, "Ban", values);
             }
         }
@@ -63,26 +63,24 @@ namespace Billy.API
         {
             get
             {
-                return (int)method.GetFromId(_id, "Money");
+                return System.Convert.ToInt32((long)method.GetFromId(_id, "Money"));
             }set
             {
                 method.EditField(_id, "Foxs", value);
             }
         }
 
-        public override bool Is
+        public static bool Is(long user_id)
         {
-            get
-            {
-                return method.Check(_id);
-            }
+            Database.Methods method = new Database.Methods("Users");
+            return method.Check(user_id);
         }
 
         public override Enums.Billy.Donate Donate
         {
             get
             {
-                int num = (int)method.GetFromId(_id, "Donate");
+                int num = System.Convert.ToInt32((long)method.GetFromId(_id, "Donate"));
                 return (Enums.Billy.Donate)num;
             }set
             {

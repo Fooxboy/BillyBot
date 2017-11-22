@@ -36,13 +36,13 @@ namespace Billy.Commands
                 {
                     try
                     {
-                        long user_id = Int64.Parse(arguments[2]);
-                        var UserNew = new API.User(user_id);
-                        if(!UserNew.Is)
+                        long user_id = Int64.Parse(arguments[2]);          
+                        if(!API.User.Is(user_id))
                         {
                             result = Data.Commands.Profile.NoUser;
                         }else
                         {
+                            var UserNew = new API.User(user_id);
                             User usr = UserNew;
                             result = Data.Commands.Profile.ProfileGet(usr);
                         }
@@ -69,10 +69,17 @@ namespace Billy.Commands
                     if(AccessFullProfile)
                     {
                         var messageForward = message_VK.ForwardedMessages[0];
-                        long? user_id = messageForward.FromId;
-                        var userNew = new API.User(user_id);
-                        User usr = userNew;
-                        result = Data.Commands.Profile.ProfileGet(usr);
+                        long? user_id = messageForward.UserId;
+                        if (API.User.Is(user_id.Value))
+                        {
+                            var userNew = new API.User(user_id);
+                            User usr = userNew;
+                            result = Data.Commands.Profile.ProfileGet(usr);
+                        }else
+                        {
+                            result = Data.Commands.Profile.NoUser;
+                        }
+                        
                     }else
                     {
                         result = Data.Commands.Profile.NoAccess;

@@ -3,6 +3,7 @@ using Billy.Models;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Billy.Helpers;
+using System.Threading;
 
 
 namespace Billy.Commands
@@ -15,7 +16,8 @@ namespace Billy.Commands
         {
             List<ICommand> commands = new List<ICommand>()
             {
-                new Test()
+                new Test(),
+                new Profile()
             };
             Render.Commands = commands;
         }
@@ -28,7 +30,7 @@ namespace Billy.Commands
             if(name == "билли"||name == "билли," || name == "бил" || name == "бил," || name == "билл" || name == "билл," || name == "billy" || name == "billy,")
             {
                 var user = new API.User(message.From);
-                if (!user.Is)
+                if (!API.User.Is(message.From))
                     API.User.New(message.From);
                 if(!user.Ban)
                 {
@@ -36,10 +38,30 @@ namespace Billy.Commands
                     foreach(var command in commands)
                     {
                         if (command.CanExecute(text[1]))
-                            command.Execute(message, text);
+                        {
+                            Thread threadRendderExecute = new Thread(new ParameterizedThreadStart(RunCommandExecute));
+                            threadRendderExecute.Name = "RenderExecuteCommand";
+                            Console.WriteLine("Выполнение потока RenderExecute");
+                            threadRendderExecute.Start(new ModelRunCommandExecute
+                            {
+                                command = command,
+                                arguments = text,
+                                message = message
+                            });
+                        }                    
                     }
                 }
             }
+        }
+
+
+        public static void RunCommandExecute(object mod)
+        {
+            var model = (ModelRunCommandExecute)mod;
+            var command = model.command;
+            var arguments = model.arguments;
+            var message = model.message;
+            command.Execute(message, arguments);
         }
 
         private static string[] Split(string message)
@@ -47,5 +69,12 @@ namespace Billy.Commands
             string[] response = message.Split(' ');
             return response;
         }
+    }
+
+    public class ModelRunCommandExecute
+    {
+        public ICommand command { get; set; }
+        public string[] arguments { get; set; }
+        public Message message { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Billy.LongPoll
     {
         public static GetLongPoll Get()
         {
-            var vk = Data.GetVk();
+            var vk = API.Data.GetVk();
             var result = vk.Messages.GetLongPollServer();
             GetLongPoll response = new GetLongPoll();
             response.Key = result.Key;

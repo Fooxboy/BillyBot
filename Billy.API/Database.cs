@@ -49,7 +49,8 @@ namespace Billy.API
                 using (var connect = new SqliteConnection($"Filename={database};"))
                 {
                     connect.Open();
-                    string sql = $"SELECT Is FROM {table} WHERE Id={id}";
+                    string hui = "IsUserProfile";
+                    string sql = $"SELECT {hui} FROM {table} WHERE Id={id}";
                     var command = new SqliteCommand(sql, connect);
                     var reader = command.ExecuteReader();
                     bool response = reader.Read();
