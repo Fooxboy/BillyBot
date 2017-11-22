@@ -10,5 +10,6 @@ namespace Billy.Models.Params
         public string Message { get; set; }
         public long? CaptchaSid { get; set; }
         public string CaptchaKey { get; set; }
+        public long From { get; set; }
     }
 }

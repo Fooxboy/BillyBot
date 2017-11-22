@@ -11,7 +11,12 @@ namespace Billy.API
         public User(long id)
         {
             _id = id;
-        } 
+        }
+
+        public User(long? id)
+        {
+            _id = id.Value;
+        }
         Database.Methods method = new Database.Methods("Users");
         public override long Id
         {
