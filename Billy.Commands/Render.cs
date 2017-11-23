@@ -18,7 +18,8 @@ namespace Billy.Commands
             {
                 new Test(),
                 new Profile(),
-                new About()
+                new About(),
+                new DailyMissions()
             };
             Render.Commands = commands;
         }

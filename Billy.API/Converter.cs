@@ -11,5 +11,11 @@ namespace Billy.API
             var chatId = peer_id - 2000000000;
             return chatId;
         }
+
+        public static long ToPeerId(long chat_id)
+        {
+            var PeerId = chat_id + 2000000000;
+            return PeerId;
+        }
     }
 }

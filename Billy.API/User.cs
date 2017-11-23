@@ -29,7 +29,7 @@ namespace Billy.API
         public static void New(long id)
         {
             var method = new Database.Methods("Users");
-            string fields = @"`id`, `Name`";
+            string fields = @"`Id`, `Name`";
             string name = Data.GetVk().Users.Get(id).FirstName;
             // string name = "чьлен";
             string values = $@"'{id}', '{name}'";
@@ -66,7 +66,7 @@ namespace Billy.API
                 return System.Convert.ToInt32((long)method.GetFromId(_id, "Money"));
             }set
             {
-                method.EditField(_id, "Foxs", value);
+                method.EditField(_id, "Money", value);
             }
         }
 
