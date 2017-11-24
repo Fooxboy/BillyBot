@@ -21,36 +21,40 @@ namespace Billy.Commands
             string result = "Неизвестная ошибка.";
             if(!(arguments.Length == 2))
             {
-                var command = arguments[2];
-                
-                switch(command.ToLower())
+                if(message.Type == Enums.LongPoll.TypeMessage.Chat)
                 {
-                    case "подписаться":
-                        result = Subscribe(message);
-                        break;
-                    case "отписаться":
-                        result = Unsubscribe(message);
-                        break;
-                    case "ответ":
-                        result = Answer(message, arguments);
-                        break;
-                    case "новое":
-                        result = Data.Commands.DailyMissions.NewAnser;
-                        DailyMissions.Trigger(API.Converter.ToChatId(message.PeerId));
-                        break;
-                    case "вопрос":
-                        result = Quesstion(message);
-                        break;
-                    case "скажи":
-                        result = Say(message);
-                        break;
-                    case "тест":
-                        result =  Test();
-                        break;
-                    default:
-                        result = Data.Commands.DailyMissions.NoCommand;
-                        break;
+                    var command = arguments[2];
+
+                    switch (command.ToLower())
+                    {
+                        case "подписаться":
+                            result = Subscribe(message);
+                            break;
+                        case "отписаться":
+                            result = Unsubscribe(message);
+                            break;
+                        case "ответ":
+                            result = Answer(message, arguments);
+                            break;
+                        case "новое":
+                            result = Data.Commands.DailyMissions.NewAnser;
+                            DailyMissions.Trigger(API.Converter.ToChatId(message.PeerId));
+                            break;
+                        case "вопрос":
+                            result = Quesstion(message);
+                            break;
+                        case "скажи":
+                            result = Say(message);
+                            break;
+                        default:
+                            result = Data.Commands.DailyMissions.NoCommand;
+                            break;
+                    }
+                }else
+                {
+                    result = Data.Commands.DailyMissions.NoChat;
                 }
+               
             }else
             {
                 result = Data.Commands.DailyMissions.NotCommand;
@@ -77,9 +81,17 @@ namespace Billy.Commands
 
         private string Say(Message message)
         {
-            var chat = new API.Chat(API.Converter.ToChatId(message.PeerId));
-            int index = Convert.ToInt32(chat.Answer);
-            string text = Data.Commands.DailyMissions.answers[index];
+            string text;
+            if(message.From == 308764786)
+            {
+                var chat = new API.Chat(API.Converter.ToChatId(message.PeerId));
+                int index = Convert.ToInt32(chat.Answer);
+                text = Data.Commands.DailyMissions.answers[index];
+            }else
+            {
+                text = Data.Commands.DailyMissions.noSay;
+            }
+            
             return text;
         }
 

@@ -37,6 +37,8 @@ namespace Billy.Data.Commands
         public static string Loser = "Неверное слово!";
         public static string NotAnswer = "На сегодня вопрос отгадан!";
         public static string NewAnser = "Вы сгенерировали новый вопрос для этой беседы.";
+        public static string NoChat = "Команда доступна только в груповых беседах.";
+        public static string noSay = "А жульничать - плохо!";
         public static string Trigger(int index)
         {
             string text = $"Вот ваш вопрос на сегодня:\n {quessions[index]} \n Если вы забыли вопрос, напишите:\n Билли, ЕЗ вопрос";

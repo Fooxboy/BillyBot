@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Billy.Helpers\Billy.Helpers.csproj" />
     <ProjectReference Include="..\Billy.Models\Billy.Models.csproj" />
   </ItemGroup>
 

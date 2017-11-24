@@ -70,6 +70,17 @@ namespace Billy.API
             }
         }
 
+        public override int CountMessage
+        {
+            get
+            {
+                return Convert.ToInt32((long)method.GetFromId(_id, "CoutMessage"));
+            }set
+            {
+                method.EditField(_id, "CoutMessage", value);
+            }
+        }
+
         public static bool Is(long user_id)
         {
             Database.Methods method = new Database.Methods("Users");
@@ -86,6 +97,14 @@ namespace Billy.API
             {
                 int donate = (int)value;
                 method.EditField(_id, "Donate", donate);
+            }
+        }
+
+        public override string DateRegistation
+        {
+            get
+            {
+                return (string)method.GetFromId(_id, "DateReg");
             }
         }
     }
