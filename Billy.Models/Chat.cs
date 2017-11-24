@@ -12,5 +12,6 @@ namespace Billy.Models
         public abstract long AdminChat { get; set; }
         //public abstract bool IsChat { get; }
         public abstract long Answer { get; set; }
+        public abstract bool Blocked { get; set; }
     }
 }

@@ -29,10 +29,9 @@ namespace Billy.API
         public static void New(long id)
         {
             var method = new Database.Methods("Users");
-            string fields = @"`Id`, `Name`";
+            string fields = @"`Id`, `Name`, `DateReg`";
             string name = Data.GetVk().Users.Get(id).FirstName;
-            // string name = "чьлен";
-            string values = $@"'{id}', '{name}'";
+            string values = $@"'{id}', '{name}', '{DateTime.Now}'";
             method.Add(fields, values);
         }
 
@@ -105,6 +104,18 @@ namespace Billy.API
             get
             {
                 return (string)method.GetFromId(_id, "DateReg");
+            }
+        }
+
+        public override bool Settings
+        {
+            get
+            {
+                return Convert.ToBoolean((long)method.GetFromId(_id, "Settings"));
+            }set
+            {
+                long result = Convert.ToInt64(value);
+                method.EditField(_id, "Settings", result);
             }
         }
     }

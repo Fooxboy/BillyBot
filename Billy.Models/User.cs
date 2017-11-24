@@ -13,6 +13,7 @@ namespace Billy.Models
         public abstract bool Ban { get; set; }
         public abstract string DateRegistation { get; }
         public abstract int CountMessage { get; set; }
+        public abstract bool Settings { get; set; }
         public abstract Enums.Billy.Donate Donate { get; set; }
     }
 }

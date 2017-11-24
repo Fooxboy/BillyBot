@@ -85,5 +85,17 @@ namespace Billy.API
                 method.EditField(id, "Answer", value);
             }
         }
+
+        public override bool Blocked
+        {
+            get
+            {
+                return Convert.ToBoolean((long)method.GetFromId(id, "Blocked"));
+            }set
+            {
+                long result = Convert.ToInt64(value);
+                method.EditField(id, "Blocked", result);
+            }
+        }
     }
 }
