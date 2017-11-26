@@ -36,35 +36,136 @@ namespace Billy.Commands
                     int countWords = arguments.Length;
                     if (countWords == 3)
                     {
-                        //вывод справки
+                        result = Data.Commands.MySettings.Settings;
                     }else
                     {
-                        switch(arguments[3].ToLower())
+                        switch (arguments[3].ToLower())
                         {
                             case "создать":
+                                result = Create(user);
                                 break;
                             case "изменить":
+                                result = Edit(user, arguments);
                                 break;
                             case "сбросить":
+                                result = Reset(user);
+                                break;
+                            default:
                                 break;
                         }
-
-                        string text = "";
-                        for (int i = 3; arguments.Length > i; i++)
-                        {
-                            text += $"{arguments[i]} ";
-                        }
-                        var yruruu = text.Remove(text.Length - 1);
                     }
                 }else
                 {
-                    //Доступные команды: настройки.
+                    result = Data.Commands.MySettings.NoSetting;
                 }
                
             }else
             {
                 result = Data.Commands.MySettings.NoAccess;
             }
+
+            
+
+            API.Message.Send(new Models.Params.MessageSendParams
+            {
+                PeerId = message.PeerId,
+                Message = result,
+                From = message.From
+            });
+
+        }
+
+        private string Reset(API.User user)
+        {
+            string result = "Неизветная ошибка.";
+            if (user.Settings)
+            {
+                var model = Read(user.Id);
+                model = DefaultSettings(user.Id);
+                result = Data.Commands.MySettings.ReadyReset;
+            }else
+            {
+                result = Data.Commands.MySettings.NotCreate;
+
+            }
+            return result;
+        }
+
+        private string Edit(API.User user, string[] argumetns)
+        {
+            string result = "Неизветная ошибка.";
+            if(user.Settings)
+            {
+                var model = Read(user.Id);
+                if(argumetns.Length >= 5)
+                {
+                    string idcommand = argumetns[4].ToLower();
+                    
+                    if(argumetns.Length >= 6)
+                    {
+                        string pCommand = argumetns[5].ToLower();
+                        switch (idcommand)
+                        {
+                            case "1":
+                                if (pCommand == "да")
+                                {
+                                    model.ViewNick = true;
+                                    Write(model);
+                                    result = Data.Commands.MySettings.Ready(pCommand);
+                                }else if(pCommand == "нет")
+                                {
+                                    model.ViewNick = false;
+                                    Write(model);
+                                    result = Data.Commands.MySettings.Ready(pCommand);
+
+                                }
+                                else
+                                {
+                                    result = Data.Commands.MySettings.NotParametr;
+                                }
+                                    break;
+                            case "2":
+                                if (pCommand == "да")
+                                {
+                                    model.ViewCommunity = true;
+                                    Write(model);
+                                    result = Data.Commands.MySettings.Ready(pCommand);
+
+                                }
+                                else if (pCommand == "нет")
+                                {
+                                    model.ViewCommunity = false;
+                                    Write(model);
+                                    result = Data.Commands.MySettings.Ready(pCommand);
+
+                                }
+                                else
+                                {
+                                    result = Data.Commands.MySettings.Ready(pCommand);
+                                }
+                                break;
+                            default:
+                                result = Data.Commands.MySettings.NotId;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        result = Data.Commands.MySettings.NoParametr;
+                    }              
+                }
+                else
+                {
+                    result = Data.Commands.MySettings.NoId;
+                }
+               
+            }else
+            {
+                result = Data.Commands.MySettings.NotCreate;
+            }
+
+            //throw new Exception("че за хуйня");
+            return result;     
         }
 
         private string Create(API.User user)
