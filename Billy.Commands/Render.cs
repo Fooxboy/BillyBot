@@ -22,7 +22,8 @@ namespace Billy.Commands
                 new DailyMissions(),
                 new MySettings(),
                 new Nick(),
-                new Ban()
+                new Ban(),
+                new Music()
             };
             Render.Commands = commands;
         }
