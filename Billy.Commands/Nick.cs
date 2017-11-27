@@ -45,7 +45,7 @@ namespace Billy.Commands
                         
                         int donateUserFrom = (int)user.Donate;
                         var idUser = VkMessage.ForwardedMessages[0].UserId;
-                        if (API.User.Is(idUser))
+                        if (API.User.Is(idUser.Value))
                         {
                             var NewUser = new API.User(idUser);
                             int donateUserTo = (int)NewUser.Donate;
