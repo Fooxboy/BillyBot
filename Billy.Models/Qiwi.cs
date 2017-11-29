@@ -6,6 +6,67 @@ namespace Billy.Models
 {
     public class Qiwi
     {
+        public class Payments
+        {
+            public class Post
+            {
+                public string id { get; set; }
+                public Sum sum { get; set; }
+                public PaymentMethod paymentMethod { get; set; }
+                public string comment { get; set; }
+                public Fields fields { get; set; }
+
+                public class Sum
+                {
+                    public int amount { get; set; }
+                    public string currency { get; set; }
+                }
+
+                public class PaymentMethod
+                {
+                    public string type { get; set; }
+                    public string accountId { get; set; }
+                }
+
+                public class Fields
+                {
+                    public string account { get; set; }
+                }
+            }
+
+            public class Result
+            {
+                public string id { get; set; }
+                public string terms { get; set; }
+                public Fields fields { get; set; }
+                public Sum sum { get; set; }
+                public Transaction transaction { get; set; }
+                public string source { get; set; }
+                public string comment { get; set; }
+
+                public class Fields
+                {
+                    public string account { get; set; }
+                }
+
+                public class Sum
+                {
+                    public int amount { get; set; }
+                    public string currency { get; set; }
+                }
+
+                public class Transaction
+                {
+                    public string id { get; set; }
+                    public State state { get; set; }
+
+                    public class State
+                    {
+                        public string code { get; set; }
+                    }
+                }
+            }
+        }
 
         public class Commission
         {
@@ -27,9 +88,43 @@ namespace Billy.Models
 
                     public class Total
                     {
-                        public long amount { get; set; }
-                        public string currency { get; set;}
+                        public int amount { get; set; }
+                        public string currency { get; set; }
                     }
+                }
+            }
+
+            public class Result
+            {
+                public int providerId { get; set; }
+                public WithdrawSum withdrawSum { get; set; }
+                public EnrollmentSum enrollmentSum { get; set; }
+                public QwCommission qwCommission { get; set; }
+                public FundingSourceCommission fundingSourceCommission { get; set; }
+                public int withdrawToEnrollmentRate { get; set; }
+
+                public class WithdrawSum
+                {
+                    public long amount { get; set; }
+                    public string currency { get; set; }
+                }
+
+                public class EnrollmentSum
+                {
+                    public long amount { get; set; }
+                    public string currency { get; set; }
+                }
+
+                public class QwCommission
+                {
+                    public long amount { get; set; }
+                    public string currency { get; set; }
+                }
+
+                public class FundingSourceCommission
+                {
+                    public long amount { get; set; }
+                    public string currency { get; set; }
                 }
             }
         }
