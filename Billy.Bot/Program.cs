@@ -15,10 +15,10 @@ namespace Billy.Bot
             Render.Initialization();
             Console.WriteLine("Хелло!");
             var Starter = new Starter();
-                Thread threadLongPoll = new Thread(Starter.Run);
-                threadLongPoll.Name = "LongPoll";
-                Console.WriteLine("Старт потока LongPoll");
-                threadLongPoll.Start();
+                 Thread threadLongPoll = new Thread(Starter.Run);
+                 threadLongPoll.Name = "LongPoll";
+                 Console.WriteLine("Старт потока LongPoll");
+                 threadLongPoll.Start();
         }
     }
 }

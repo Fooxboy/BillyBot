@@ -24,7 +24,8 @@ namespace Billy.Commands
                 new Nick(),
                 new Ban(),
                 new Music(),
-                new Donate()
+                new Donate(),
+                new Foxs()
             };
             Render.Commands = commands;
         }

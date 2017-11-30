@@ -1,13 +1,1 @@
-{
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "target": "es5"
-  },
-  "exclude": [
-    "node_modules",
-    "wwwroot"
-  ]
-}
+{"users":[{"Id":1,"IDsPay":[1,2,3,4]},{"Id":2,"IDsPay":[1,2,3,4]}]}

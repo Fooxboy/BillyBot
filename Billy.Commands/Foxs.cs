@@ -30,18 +30,38 @@ namespace Billy.Commands
                         result = Buy(message, arguments);
                         break;
                     case "вывести":
+                        result = ExitPay(message, arguments);
                         break;
                     case "баланс":
                         result = Balance(message.From);
                         break;
                     case "проверить":
+                        result = CheckPay(message.From);
                         break;
                     default:
-                        //Неизвестная подкоманда
+                        result = Data.Commands.Foxs.NotCommand;
                         break;
 
                 }
             }
+        }
+
+        private string ExitPay(Message message, string[] arguments)
+        {
+            string result = "Неизвестная ошибка.";
+            if(arguments.Length < 4)
+            {
+                result = Data.Commands.Foxs.NoWallet;
+            }else
+            {
+                string wallet = arguments[3];
+                var user =  new API.User(message.From);
+                int count = user.Foxs / 2;
+                user.Foxs = 0;
+                var res = API.Qiwi.Payments(count, wallet);
+                result = Data.Commands.Foxs.ReadyExitPay(count, message.From);
+            }
+            return result;
         }
 
         private string CheckPay(long id)
@@ -60,43 +80,78 @@ namespace Billy.Commands
 
             var model = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.DonateUsersModels>(json);
 
+            bool isUser = false;
+            int userNumber = 0;
+            long payId = 1;
+            Qiwi.Payment.Pay thisPay = null;
             foreach(var pay in pays)
             {
                 if(pay.comment == id.ToString())
                 {
-                    foreach(var user in model.users)
+                    foreach(var userDontate in model.users)
                     {
-                        if(user.Id == id)
+                        if(userDontate.Id == id)
                         {
-                            foreach(var idPay in user.IDsPay)
-                            {
-                                if(idPay == pay.txnId)
-                                {
-                                    isDonate = false;
-                                    break;
-                                }else
-                                {
-                                    user.IDsPay.Add(pay.txnId);
-                                    
-                                    isDonate = true;
-                                }
-                            }
-                        }else
-                        {
-
-                            isDonate = true;
+                            isUser = true;
                         }
+                        userNumber++;
                     }
-                    break;
+                    payId = pay.txnId;
+                    thisPay = pay;
+                }
+            }
+
+            if(isUser)
+            {
+               foreach(var ids in model.users[userNumber].IDsPay)
+               {
+                    if(ids ==  payId)
+                    {
+                        isDonate = false;
+                        break;
+                    }
+                    isDonate = true;
+               }
+            }else
+            {
+                //создаём.
+                var usersModels = model.users;
+                usersModels.Add(new DonateUsersModels.User
+                {
+                    Id = id,
+                    IDsPay = new List<long> { 0 }
+                });
+
+                model.users = usersModels;
+
+                var jsonModels = Newtonsoft.Json.JsonConvert.SerializeObject(model);
+                using(var writer = new System.IO.StreamWriter("DonateUsers.json"))
+                {
+                    writer.Write(jsonModels);
                 }
             }
 
             if(isDonate)
             {
+                decimal count = thisPay.sum.amount;
+                var user = new API.User(id);
+                int foxs = System.Convert.ToInt32(count);
+                user.Foxs += foxs;
+                model.users[userNumber].IDsPay.Add(payId);
+                var jsonModels = Newtonsoft.Json.JsonConvert.SerializeObject(model);
 
-            }else
+                using (var writer = new System.IO.StreamWriter("DonateUsers.json"))
+                {
+                    writer.Write(jsonModels);
+                }
+
+                //чек.
+
+                result = Data.Commands.Foxs.ReadyPay(id, foxs, user.Foxs);
+            }
+            else
             {
-                //Не найден Ваш донат.
+                result = Data.Commands.Foxs.NoPay;
             }
 
             return result;
