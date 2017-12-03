@@ -105,7 +105,7 @@ namespace Billy.API
 
         public static Models.Qiwi.Payment PaymentHistory(long rows)
         {
-            string json = Request("payment-history", $"persons/9094413184/payments?rows={rows}&operation=ALL");
+            string json = Request($"https://edge.qiwi.com/payment-history/v1/persons/79094413184/payments?rows={rows}");
             var payments = JsonConvert.DeserializeObject<Models.Qiwi.Payment>(json);
             return payments;
         }
@@ -130,7 +130,27 @@ namespace Billy.API
 
             return text;
         }
-         
+
+        public static string Request(string url)
+        {
+            string Token = "433242ad3c1f95e0dbdfc159c4df89e9";
+
+            var request = HttpWebRequest.Create(url);
+            request.Headers.Add(HttpRequestHeader.Accept, "application/json");
+            request.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+            request.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {Token}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            var stream = response.GetResponseStream();
+            string text;
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                text = reader.ReadToEnd();
+            }
+
+            return text;
+        }
+
         public static string RequestPost(string method,string data)
         {
             string Token = "433242ad3c1f95e0dbdfc159c4df89e9";

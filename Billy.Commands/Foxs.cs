@@ -44,6 +44,13 @@ namespace Billy.Commands
 
                 }
             }
+
+            API.Message.Send(new Models.Params.MessageSendParams
+            {
+                PeerId = message.PeerId,
+                Message = result,
+                From = message.From
+            });
         }
 
         private string ExitPay(Message message, string[] arguments)
@@ -84,6 +91,7 @@ namespace Billy.Commands
             int userNumber = 0;
             long payId = 1;
             Qiwi.Payment.Pay thisPay = null;
+
             foreach(var pay in pays)
             {
                 if(pay.comment == id.ToString())
@@ -115,20 +123,27 @@ namespace Billy.Commands
             }else
             {
                 //создаём.
-                var usersModels = model.users;
-                usersModels.Add(new DonateUsersModels.User
+                if(isDonate)
                 {
-                    Id = id,
-                    IDsPay = new List<long> { 0 }
-                });
+                    var usersModels = model.users;
+                    usersModels.Add(new DonateUsersModels.User
+                    {
+                        Id = id,
+                        IDsPay = new List<long> { 0 }
+                    });
 
-                model.users = usersModels;
+                    model.users = usersModels;
 
-                var jsonModels = Newtonsoft.Json.JsonConvert.SerializeObject(model);
-                using(var writer = new System.IO.StreamWriter("DonateUsers.json"))
+                    var jsonModels = Newtonsoft.Json.JsonConvert.SerializeObject(model);
+                    using (var writer = new System.IO.StreamWriter("DonateUsers.json"))
+                    {
+                        writer.Write(jsonModels);
+                    }
+                }else
                 {
-                    writer.Write(jsonModels);
+
                 }
+                
             }
 
             if(isDonate)
