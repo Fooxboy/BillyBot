@@ -73,6 +73,13 @@ namespace Billy.Commands
             {
                 result = Data.Commands.Chat.NoChat;
             }
+
+            API.Message.Send(new Models.Params.MessageSendParams
+            {
+                PeerId = message.PeerId,
+                Message = result,
+                From = message.From
+            });
         }
 
         private string TitleBlock(Message message)

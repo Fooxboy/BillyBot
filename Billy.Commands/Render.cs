@@ -25,7 +25,10 @@ namespace Billy.Commands
                 new Ban(),
                 new Music(),
                 new Donate(),
-                new Foxs()
+                new Foxs(),
+                new Chat(),
+                new Hello(),
+                new Help()
             };
             Render.Commands = commands;
         }
