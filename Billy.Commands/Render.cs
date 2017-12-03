@@ -32,6 +32,13 @@ namespace Billy.Commands
 
         public static void Run(Message message)
         {
+            if (message.ExtraFields.Attach.source_act != null)
+            {
+                if (message.ExtraFields.Attach.source_act == "chat_title_update")
+                {
+                    Chat.TitleTrigger(message);
+                }
+            }
             string[] text = Split(message.ExtraFields.Text);
             int countWords = text.Length;
             string name = text[0].ToLower();

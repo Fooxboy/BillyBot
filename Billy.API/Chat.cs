@@ -58,9 +58,6 @@ namespace Billy.API
             get
             {
                 return (long)method.GetFromId(id, "AdminChat");
-            }set
-            {
-                method.EditField(id, "AdminChat", value);
             }
         }
 
@@ -95,6 +92,41 @@ namespace Billy.API
             {
                 long result = Convert.ToInt64(value);
                 method.EditField(id, "Blocked", result);
+            }
+        }
+
+        public override bool BlockedPhoto
+        {
+            get
+            {
+                return Convert.ToBoolean((long)method.GetFromId(id, "BlockedPhoto"));
+            }set
+            {
+                long result = Convert.ToInt64(value);
+                method.EditField(id, "BlockedPhoto", result);
+            }
+        }
+
+        public override string Photo
+        {
+            get
+            {
+                return (string)method.GetFromId(id, "Photo");
+            }set
+            {
+                method.EditField(id, "Photo", value);
+            }
+        }
+
+        public override long AdminSavePhoto
+        {
+            get
+            {
+                return (long)method.GetFromId(id, "AdminSavePhoto");
+            }set
+            {
+                method.EditField(id, "AdminSavePhoto", value);
+
             }
         }
     }
