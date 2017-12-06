@@ -9,12 +9,12 @@ namespace Billy.Data.Commands
         public string Name => "Фоксы";
         public string Help => "Команда для управления Вашим счётом Фоксов.";
         public string FullHelp => "Скоро будет!";
-        public static string Buy(string url, long UserId)
+        public static string Buy(string url, long UserId, int countDonate)
         {
             string text = $"ПОКУПКА ФОКСОВ:" +
                 $"\nЦена: 1 Российский рубль = 1 Фокс" +
                 $"\nДля того чтобы купить Фоксы Вам нужно перевести определённую сумму на Qiwi кошелёк: 9094413184" +
-                $"\nВ комментарии к платежу написать: {UserId}" +
+                $"\nВ комментарии к платежу написать: {UserId}_{countDonate}" +
                 $"\nЕсли Вы не укажите комментарий, автоматическая система проверки платежа не сможет Вам зачислить Фоксы автоматически." +
                 $"\nЕсли Вы не указали комментарий с ID, напишите [fooxboy|Разработчику] ." +
                 $"\nЕсли Вы хотите оплатить с кошелька QIWI просто перейдите по ссылке:" +

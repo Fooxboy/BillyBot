@@ -76,99 +76,24 @@ namespace Billy.Commands
             //проверка...
             string result = "Неизвестная ошибка.";
             var payments = API.Qiwi.PaymentHistory(10);
-            var pays = payments.data;
             bool isDonate = false;
-
-            string json;
-            using(var reader = new System.IO.StreamReader("DonateUsers.json"))
-            {
-                json = reader.ReadToEnd();
-            }
-
-            var model = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.DonateUsersModels>(json);
-
-            bool isUser = false;
-            int userNumber = 0;
-            long payId = 1;
             Qiwi.Payment.Pay thisPay = null;
+            var user = new API.User(id);
 
-            foreach(var pay in pays)
+            foreach(var pay in payments.data)
             {
-                if(pay.comment == id.ToString())
+                if (pay.comment == $"{id}_{user.DonateCount}")
                 {
-                    foreach(var userDontate in model.users)
-                    {
-                        if(userDontate.Id == id)
-                        {
-                            isUser = true;
-                        }
-                        userNumber++;
-                    }
-                    payId = pay.txnId;
-                    thisPay = pay;
+                    int foxs = System.Convert.ToInt32(thisPay.sum.amount);
+                    user.Foxs += foxs;
+                    result = Data.Commands.Foxs.ReadyPay(id, foxs, user.Foxs);
+                    user.DonateCount += 1;
+                }
+                else
+                {
+                    result = Data.Commands.Foxs.NoPay;
                 }
             }
-
-            if(isUser)
-            {
-               foreach(var ids in model.users[userNumber].IDsPay)
-               {
-                    if(ids ==  payId)
-                    {
-                        isDonate = false;
-                        break;
-                    }
-                    isDonate = true;
-               }
-            }else
-            {
-                //создаём.
-                if(isDonate)
-                {
-                    var usersModels = model.users;
-                    usersModels.Add(new DonateUsersModels.User
-                    {
-                        Id = id,
-                        IDsPay = new List<long> { 0 }
-                    });
-
-                    model.users = usersModels;
-
-                    var jsonModels = Newtonsoft.Json.JsonConvert.SerializeObject(model);
-                    using (var writer = new System.IO.StreamWriter("DonateUsers.json"))
-                    {
-                        writer.Write(jsonModels);
-                    }
-                }else
-                {
-
-                }
-                
-            }
-
-            if(isDonate)
-            {
-                decimal count = thisPay.sum.amount;
-                var user = new API.User(id);
-                int foxs = System.Convert.ToInt32(count);
-                user.Foxs += foxs;
-                model.users[userNumber].IDsPay.Add(payId);
-                var jsonModels = Newtonsoft.Json.JsonConvert.SerializeObject(model);
-
-                using (var writer = new System.IO.StreamWriter("DonateUsers.json"))
-                {
-                    writer.Write(jsonModels);
-                }
-
-                //чек.
-
-                result = Data.Commands.Foxs.ReadyPay(id, foxs, user.Foxs);
-            }
-            else
-            {
-                result = Data.Commands.Foxs.NoPay;
-            }
-
             return result;
         }
 
@@ -183,10 +108,12 @@ namespace Billy.Commands
 
         private string Buy(Message message, string[] arguments)
         {
+            var user = new API.User(message.From);
+            int count = user.DonateCount;
             string result = "Неизвестная ошибка.";
-            var url1 = API.Qiwi.GetUrl(message.From);
+            var url1 = API.Qiwi.GetUrl(message.From, count);
             var url = API.Data.GetVk().Utils.GetShortLink(new Uri(url1), false);
-            result = Data.Commands.Foxs.Buy(url.ShortUrl.AbsoluteUri, message.From);
+            result = Data.Commands.Foxs.Buy(url.ShortUrl.AbsoluteUri, message.From,count);
             return result;
         }
     }

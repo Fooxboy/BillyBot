@@ -118,5 +118,16 @@ namespace Billy.API
                 method.EditField(_id, "Settings", result);
             }
         }
+
+        public override int DonateCount
+        {
+            get
+            {
+                return Convert.ToInt32((long)method.GetFromId(_id, "DonateCount");
+            }set
+            {
+                method.EditField(_id, "DonateCount", value);
+            }
+        }
     }
 }

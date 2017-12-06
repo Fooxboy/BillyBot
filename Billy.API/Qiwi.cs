@@ -63,9 +63,9 @@ namespace Billy.API
             Console.ReadLine();
         }
 
-        public static string GetUrl(long idUser)
+        public static string GetUrl(long idUser,int count)
         {
-            string url = $"https://qiwi.com/payment/form/99?currency=643&amountInteger=50&currency=643&extra[‘comment’]={idUser}&extra[‘account’]=79094413184";
+            string url = $"https://qiwi.com/payment/form/99?currency=643&amountInteger=50&currency=643&extra[‘comment’]={idUser}_{count}&extra[‘account’]=79094413184";
             return url;
         }
 
