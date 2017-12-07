@@ -28,7 +28,9 @@ namespace Billy.Commands
                 new Foxs(),
                 new Chat(),
                 new Hello(),
-                new Help()
+                new Help(),
+                new Who(),
+                new When()
             };
             Render.Commands = commands;
         }

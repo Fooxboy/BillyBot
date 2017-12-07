@@ -123,7 +123,7 @@ namespace Billy.API
         {
             get
             {
-                return Convert.ToInt32((long)method.GetFromId(_id, "DonateCount");
+                return Convert.ToInt32((long)method.GetFromId(_id, "DonateCount"));
             }set
             {
                 method.EditField(_id, "DonateCount", value);
