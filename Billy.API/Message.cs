@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Billy.Models.Params;
 using Billy.Helpers;
+using System.Net;
+using System.IO;
 
 namespace Billy.API
 {
@@ -29,6 +31,13 @@ namespace Billy.API
                 CaptchaSid = @params.CaptchaSid
             });
             //ready.
+        }
+
+        public static void SendPhoto()
+        {
+            var vk = Data.GetVk();
+            var url = vk.Photo.GetMessagesUploadServer().UploadUrl;
+
         }
     }
 }
