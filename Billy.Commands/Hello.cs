@@ -7,7 +7,7 @@ namespace Billy.Commands
 {
     public class Hello : ICommand
     {
-        public string Name => "привет";
+        public string Name => "Привет";
         public string Help => "Отладочная команда.";
         public string FullHelp => "Полное описание";
         public List<Enums.Billy.Donate> Donate => Samples.AccessDonate.All;

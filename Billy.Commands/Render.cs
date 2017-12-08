@@ -30,7 +30,9 @@ namespace Billy.Commands
                 new Hello(),
                 new Help(),
                 new Who(),
-                new When()
+                new When(),
+                new Lot(),
+                new Vote()
             };
             Render.Commands = commands;
         }
