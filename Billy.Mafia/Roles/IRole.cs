@@ -16,5 +16,6 @@ namespace Billy.Mafia.Roles
     {
         Жители = 1,
         Разбойники = 2,
+        Одиночки =3
     }
 }
