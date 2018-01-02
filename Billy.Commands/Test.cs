@@ -17,6 +17,12 @@ namespace Billy.Commands
         public void Execute(Message message, string[] arguments)
         {
             var hul = Data.Commands.Test.Complete;
+            API.Message.Send(new Models.Params.MessageSendParams
+            {
+                PeerId = message.PeerId,
+                Message = hul,
+                From = message.From
+            });
         }
     }
 }

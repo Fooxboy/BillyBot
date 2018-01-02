@@ -5,9 +5,10 @@ using Billy.Models;
 
 namespace Billy.Commands
 {
+    //TODO: Доделать голосования.
     public class Vote : ICommand
     {
-        Data.Commands.IDataCommand data = new Data.Commands.Foxs();
+        Data.Commands.IDataCommand data = new Data.Commands.Vote();
         public string Name => data.Name;
         public string Help => data.Help;
         public string FullHelp => data.FullHelp;

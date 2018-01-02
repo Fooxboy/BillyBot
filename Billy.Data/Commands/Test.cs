@@ -11,6 +11,6 @@ namespace Billy.Data.Commands
 
         public string FullHelp => "Команда доступная только для тестеров. Отвечает какую-то дичь.";
 
-        public static string Complete = "Хуй";
+        public static string Complete = "Тест";
     }
 }

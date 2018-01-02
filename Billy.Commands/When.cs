@@ -20,7 +20,7 @@ namespace Billy.Commands
             var random = new Random();
             int day = random.Next(1, 29);
             int match = random.Next(1, 12);
-            int Year = random.Next(2017, 2100);
+            int Year = random.Next(2018, 2100);
             result = Data.Commands.When.Ready(day, match, Year);
             API.Message.Send(new Models.Params.MessageSendParams
             {

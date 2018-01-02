@@ -5,9 +5,10 @@ using Billy.Models;
 
 namespace Billy.Commands
 {
+    //TODO: Доделать задания.
     class Missions:ICommand
     {
-        Data.Commands.IDataCommand data = new Data.Commands.Who();
+        Data.Commands.IDataCommand data = new Data.Commands.Missions();
         public string Name => data.Name;
         public string Help => data.Help;
         public string FullHelp => data.FullHelp;
