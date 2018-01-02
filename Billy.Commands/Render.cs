@@ -33,7 +33,8 @@ namespace Billy.Commands
                 new When(),
                 new Lot(),
                 new Vote(),
-                new Missions()
+                new Missions(),
+                new Mafia()
             };
             Render.Commands = commands;
         }
