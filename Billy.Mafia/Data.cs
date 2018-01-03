@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
+
 namespace Billy.Mafia
 {
     public class Data
@@ -12,9 +13,9 @@ namespace Billy.Mafia
 
         }
 
-        public static void WriteGameAll()
+        public static void WriteGameAll(GameModel game)
         {
-
+            var nowGames = ;
         }
 
         public static void Create(long chat_id)

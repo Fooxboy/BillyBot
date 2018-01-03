@@ -10,8 +10,8 @@ namespace Billy.Mafia
         public long GroupId { get; set; }
         public List<long> FullPlayers { get; set; }
         public List<long> PlayPlayers { get; set; }
-        public List<Roles.IRole> FullRoles { get; set; }
-        public List<Roles.IRole> PlayRoles { get; set; }
+        public List<int> FullRoles { get; set; }
+        public List<int> PlayRoles { get; set; }
         public long UserCreate { get; set; }
     }
 }
