@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Billy.LongPoll\Billy.LongPoll.csproj" />
+    <ProjectReference Include="..\Billy.Mafia\Billy.Mafia.csproj" />
   </ItemGroup>
 
 </Project>
