@@ -58,6 +58,7 @@ namespace Billy.Commands
                     string name = arguments[3];
                     var clanId = API.Clan.New(name, userId);
                     user.Clan = clanId;
+
                     result = Data.Commands.Clans.ReadyCreate;
                 }
                 else result = Data.Commands.Clans.NotNameClan;

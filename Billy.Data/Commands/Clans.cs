@@ -23,11 +23,11 @@ namespace Billy.Data.Commands
         public static string ReadyCreate = "Вы успешно создали клан!";
         public static string Info(Models.Clan clan, string nameCreator, string members)
         {
-            string result = $"===ИНФОРМАЦИЯ О КЛАНЕ===" +
+            string result = $"\n===ИНФОРМАЦИЯ О КЛАНЕ===" +
                 $"\nНАЗВАНИЕ: {clan.Name}" +
                 $"\nID: {clan.Id}" +
-                $"\nУЧАСТНИКИ: \n {members}" +
-                $"\nСОЗДАТЕЛЬ: [{clan.Creator}|{nameCreator}]" +
+                $"\nУЧАСТНИКИ: {members}" +
+                $"\nСОЗДАТЕЛЬ: [{clan.Creator} | {nameCreator}]" +
                 $"\nДАТА СОЗДАНИЯ: {clan.Date}";
             return result;
         }

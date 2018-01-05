@@ -15,7 +15,7 @@ namespace Billy.Mafia
 
         public static void WriteGameAll(GameModel game)
         {
-            var nowGames = ;
+            var nowGames = "";
         }
 
         public static void Create(long chat_id)

@@ -132,7 +132,7 @@ namespace Billy.API
 
        public override int Clan
        {
-            get => (int)method.GetFromId(_id, "Clan");
+            get => Convert.ToInt32((long)method.GetFromId(_id, "Clan"));
             set => method.EditField(_id, "Clan", value);
        }
     }

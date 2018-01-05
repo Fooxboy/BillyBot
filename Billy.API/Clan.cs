@@ -29,7 +29,7 @@ namespace Billy.API
             string values = $@"'{id}', '{name}', {userCreator} , {userCreator}, '{DateTime.Now}'";
             method.Add(fields, values);
             clan.Creator += 1;
-            return id;
+            return Convert.ToInt32(id);
         }
 
         public override string Name
