@@ -15,42 +15,50 @@ namespace Billy.Commands
 
         public void Execute(Message message, string[] arguments)
         {
-            string result = "Неизвестная ошибка.";
             var vk = API.Data.GetVk();
             long[] groups =
             {
-                1,
-                2,
-                4
+                -142482686,
+                -66678575,
+                -139939445,
+                -45745333
             };
             var rand = new Random();
             var posts = vk.Wall.Get(new VkNet.Model.RequestParams.WallGetParams
             {
-                OwnerId = groups[rand.Next(0, groups.Length)],
+                OwnerId = groups[rand.Next(0, groups.Length - 1)],
                 Count = 30
             }).WallPosts;
             int index = rand.Next(0, 29);
             var post = posts[index];
             if(post.Attachments.Count  == 0)
             {
-                //хуй саси.
+                throw new Exception("ууу");
             }else
             {
                 var attach = post.Attachment;
                 if(attach.Type == typeof(VkNet.Model.Attachments.Photo))
                 {
                     var photo = (VkNet.Model.Attachments.Photo)attach.Instance;
-                    var url = photo.BigPhotoSrc;
+                    var url = photo.Photo604;
                     var client = new System.Net.WebClient();
-                    client.DownloadFile(url, $"Photo_{photo.Id}");
-                    //загружаем на сервер.
-                    //ббла бла бла
-                    //бла бла бла
-                    System.IO.File.Delete($"Photo_{photo.Id}");
+                    var fileName = $"Photo_{photo.Id}.jpg";
+                    client.DownloadFile(url, fileName);
+                    var urlPhoto = vk.Photo.GetMessagesUploadServer().UploadUrl;
+                    var PhotoStr = API.Upload.Photo(fileName, urlPhoto);
+
+                    API.Message.SendPhoto(PhotoStr, new Models.Params.MessageSendParams
+                    {
+                        PeerId = message.PeerId,
+                        Message = "Ваш МЕМ:",
+                        From = message.From
+                    });
+                    
+                    System.IO.File.Delete(fileName);
                     
                 }else
                 {
-                    //хуй саси.
+                    throw new Exception("ууу");
                 }
             }
         }

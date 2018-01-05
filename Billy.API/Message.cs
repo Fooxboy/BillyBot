@@ -5,6 +5,7 @@ using Billy.Models.Params;
 using Billy.Helpers;
 using System.Net;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace Billy.API
 {
@@ -30,14 +31,22 @@ namespace Billy.API
                 CaptchaKey = @params.CaptchaKey,
                 CaptchaSid = @params.CaptchaSid
             });
-            //ready.
         }
 
-        public static void SendPhoto()
+        public static void SendPhoto(string resultUpload, MessageSendParams @params)
         {
             var vk = Data.GetVk();
-            var url = vk.Photo.GetMessagesUploadServer().UploadUrl;
+            
 
-        }
+            var photo =  vk.Photo.SaveMessagesPhoto(resultUpload);
+            vk.Messages.Send(new VkNet.Model.RequestParams.MessagesSendParams
+            {
+                PeerId = @params.PeerId,
+                Message = @params.Message,
+                CaptchaKey = @params.CaptchaKey,
+                CaptchaSid = @params.CaptchaSid,
+                Attachments = photo
+            });
+        }        
     }
 }
