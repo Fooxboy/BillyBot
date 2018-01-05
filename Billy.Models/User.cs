@@ -16,5 +16,6 @@ namespace Billy.Models
         public abstract bool Settings { get; set; }
         public abstract Enums.Billy.Donate Donate { get; set; }
         public abstract int DonateCount { get; set; }
+        public abstract int Clan { get; set; }
     }
 }

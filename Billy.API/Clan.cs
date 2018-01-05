@@ -20,7 +20,7 @@ namespace Billy.API
             }
         }
 
-        public static void New(string name, long userCreator)
+        public static int New(string name, long userCreator)
         {
             var method = new Database.Methods("Clans");
             string fields = @"`Id`, `Name`, `Members`, `Creator`, `Date`";
@@ -29,6 +29,7 @@ namespace Billy.API
             string values = $@"'{id}', '{name}', {userCreator} , {userCreator}, '{DateTime.Now}'";
             method.Add(fields, values);
             clan.Creator += 1;
+            return id;
         }
 
         public override string Name

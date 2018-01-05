@@ -129,5 +129,11 @@ namespace Billy.API
                 method.EditField(_id, "DonateCount", value);
             }
         }
+
+       public override int Clan
+       {
+            get => (int)method.GetFromId(_id, "Clan");
+            set => method.EditField(_id, "Clan", value);
+       }
     }
 }
