@@ -12,5 +12,6 @@ namespace Billy.Models
         public abstract string Members { get; set; }
         public abstract long Creator { get; set; }
         public abstract string Date { get; set; }
+        
     }
 }

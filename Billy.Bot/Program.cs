@@ -11,16 +11,14 @@ namespace Billy.Bot
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Инициализация....");
+            Console.WriteLine("Инициализация команд.");
              Render.Initialization();
-             Console.WriteLine("Хелло!");
+             Console.WriteLine("Конец инициализации.");
              var Starter = new Starter();
                   Thread threadLongPoll = new Thread(Starter.Run);
                   threadLongPoll.Name = "LongPoll";
                   Console.WriteLine("Старт потока LongPoll");
                   threadLongPoll.Start(); 
-
-          
         }
     }
 }

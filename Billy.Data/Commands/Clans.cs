@@ -21,6 +21,8 @@ namespace Billy.Data.Commands
         public static string ReadyLeave = "Вы успешно покинули клан.";
         public static string NotNameClan = "Вы не указали имя клана.";
         public static string ReadyCreate = "Вы успешно создали клан!";
+        public static string NotCommand = "Неизвестная подкоманда.";
+        public static string NotIdClan = "Клана с таким ID не существует!";
         public static string Info(Models.Clan clan, string nameCreator, string members)
         {
             string result = $"\n===ИНФОРМАЦИЯ О КЛАНЕ===" +

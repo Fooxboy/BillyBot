@@ -41,7 +41,7 @@ namespace Billy.Data.Commands
         public static string noSay = "А жульничать - плохо!";
         public static string Trigger(int index)
         {
-            string text = $"Вот ваш вопрос на сегодня:\n {quessions[index]} \n Если вы забыли вопрос, напишите:\n Билли, ЕЗ вопрос";
+            string text = $"Вот ваш вопрос на сегодня:\n {quessions[index]} \n Если вы забыли вопрос, напишите:\n Билли, ЕЗ вопрос\nЧтобы ответить на вопрос напишите : Билли ез ответ <Ваш ответ>";
             return text;
         }
         public static string[] quessions =

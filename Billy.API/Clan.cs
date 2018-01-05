@@ -20,6 +20,12 @@ namespace Billy.API
             }
         }
 
+        public static bool Is(int Id)
+        {
+            Database.Methods method = new Database.Methods("Clans");
+            return method.Check(Id);
+        }
+
         public static int New(string name, long userCreator)
         {
             var method = new Database.Methods("Clans");
@@ -53,6 +59,8 @@ namespace Billy.API
                 method.EditField(_id, "Members", value);
             }
         }
+
+        
 
         public override string Date
         {

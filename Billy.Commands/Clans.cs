@@ -35,7 +35,7 @@ namespace Billy.Commands
                     result = Info(message.From);
                     break;
                 default:
-                    //Неизвестная команда.
+                    result = Data.Commands.Clans.NotCommand;
                     break;
             }
             API.Message.Send(new Models.Params.MessageSendParams
@@ -132,24 +132,27 @@ namespace Billy.Commands
         {
             string result = "Неизвестная ошибка.";
             var user = new API.User(userId);
-
+            
             if (user.Clan == 0)
             {
                 if (arguments.Length > 3)
                 {
                     var clanId = Convert.ToInt32(arguments[3]);
-                    var clan = new API.Clan(clanId);
-                    var members = clan.Members;
-                    members += $"{userId} ";
-                    user.Clan = clanId;
-                    result = Data.Commands.Clans.ReadyJoin;
+                    if (API.Clan.Is(clanId))
+                    {
+                        var clan = new API.Clan(clanId);
+
+                        var members = clan.Members;
+                        members += $"{userId} ";
+                        user.Clan = clanId;
+                        result = Data.Commands.Clans.ReadyJoin;
+                    }
+                    else result = Data.Commands.Clans.NotIdClan;
+                    
                 }
                 else result = Data.Commands.Clans.NoIdClan;
             }
             else result = Data.Commands.Clans.InClan;
-
-
-
             return result;
         }
 
