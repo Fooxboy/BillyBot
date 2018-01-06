@@ -36,7 +36,8 @@ namespace Billy.Commands
                 new Missions(),
                 new Mafia(),
                 new Clans(),
-                new Meme()
+                new Meme(),
+                new Love()
             };
             Render.Commands = commands;
         }
