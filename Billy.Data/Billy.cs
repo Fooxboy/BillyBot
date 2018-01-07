@@ -4,7 +4,7 @@ namespace Billy.Data
 {
     public class Billy
     {
-        public static string Version = "0.4.22";
-        public static string Build = "06.01.2018";
+        public static string Version = "0.4.23";
+        public static string Build = "07.01.2018";
     }
 }

@@ -19,8 +19,27 @@ namespace Billy.API
 
         }
 
-        public override string Answer => (string)method.GetFromId(id, "Answer");
-        public override string Question => (string)method.GetFromId(id, "Question");
+        public static int New(string question, long creator)
+        {
+            var method = new Database.Methods("FieldOfDreams");
+            var id = (long)method.GetFromId(228161, "Creator");
+            string fields = @"`Id`, `Question`, `Answer`, `Creator`, `DialogId`, `Compete`, `Proccess`";
+
+            string values = $@"'{id}', '{question}' , '111', '{creator}', '0', '0', '[][][][][][]'";
+            method.Add(fields, values);
+            method.EditField(228161, "Creator", id + 1);
+            return Convert.ToInt32(id);
+        }
+
+        public static bool Is(int id)
+        {
+            var method = new Database.Methods("FieldOfDreams");
+            return method.Check(id);
+        }
+
+        public override string Answer { get => (string)method.GetFromId(id, "Answer");
+            set => method.EditField(id, "Answer", value); }
+        public override string Question =>(string) method.GetFromId(id, "Question");
         public override string Proccess { get => (string)method.GetFromId(id, "Proccess");
             set => method.EditField(id,"Proccess", value); }
         public override long Creator => (long)method.GetFromId(id, "Creator");

@@ -15,7 +15,7 @@ namespace Billy.Data.Commands
 
         public static string Ready(string name, string fam, string domain, string nick)
         {
-            string text = $"И таааак. Я думаю, что [{nick}|{name} {fam}] - {nick}!";
+            string text = $"И таааак. Я думаю, что [{domain}|{name} {fam}] - {nick}!";
             return text;
         }
         public static string NoChat = "Команда доступна только в групповых беседах.";

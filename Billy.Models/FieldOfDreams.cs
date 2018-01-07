@@ -8,7 +8,7 @@ namespace Billy.Models
     {
         public abstract int Id { get; }
         public abstract string Question { get; }
-        public abstract string Answer { get; }
+        public abstract string Answer { get; set; }
         public abstract long Creator { get; }
         public abstract long DialogId { get; set; }
         public abstract bool Complete { get; set; }
