@@ -21,5 +21,39 @@ namespace Billy.Data.Commands
 
         }
         public static string NotCommand = "Неверная подкоманда!";
+        public static string InDialog = "Команда доступна только в личном диалоге.";
+        public static string InChat = "Команда доступна только в групповых чатах.";
+        public static string NotId = "Вы не указали ID.";
+        public static string NoStarted = "Нельзя присоединиться к игре, в которой не задан ответ.";
+        public static string GameEnd = "Нельзя присоединиться к игре, которая завершена.";
+        public static string GameInChatId = "Эта игра привязана к другой групповой беседе.";
+        public static string UserInPlayOther = "Вы уже находитесь в другой игре. Напишите: Билли, пч выйти";
+        public static string ReadyEnter = "Вы успешно присоединились к текущей игре!";
+        public static string IsNotCreatorAdd = "Эта игра ещё не привязана к определённой групповой беседе. Для начала её нужно привязать. Это может сделать только создатель этой игры.";
+        public static string ReadyAdded = "Вы успешно привязали игру к текущей беседе! Теперь другие смогут к ней присоединиться!";
+        public static string ReadyLeave = "Вы успешно покинули игру.";
+        public static string InNotGame = "Вы не находитесь в какой-либо игре.";
+        public static string NoChar = "Вы не указали букву!";
+        public static string GameIsComptele = "Игра уже завершена. Выйдите с неё. Напишите: Билли, пч выйти";
+        public static string ReadyLose = "Вы не угадали букву!";
+        public static string ReadyWin(int count, string proccesing, bool competed)
+        {
+            string result = null;
+            if(competed)
+            {
+                result = $"ВЫ УСПЕШНО УГАДАЛИ {count} БУКВ(да, да, мне было лень.)!" +
+                    $"\nТекущий прогресс: {proccesing}" +
+                    $"\nДА! ВЫ ЗАКОНЧИЛИ ИГРУ! НАЧНИТЕ НОВУЮ!" +
+                    $"\nНо для начала выйдите с этой, написав: Билли, пч выйти " +
+                    $"\nДа, мне лень было сделать авт. выход)()()((";
+            }else
+            {
+                result = $"ВЫ УСПЕШНО УГАДАЛИ {count} БУКВ(да, да, мне было лень.)!" +
+                    $"\nТекущий прогресс: {proccesing}" +
+                    $"\nПродолжайте! Я в вас верю! У вас все получится!";
+            }
+
+            return result;
+        }
     }
 }

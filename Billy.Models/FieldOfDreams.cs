@@ -13,5 +13,6 @@ namespace Billy.Models
         public abstract long DialogId { get; set; }
         public abstract bool Complete { get; set; }
         public abstract string Proccess { get; set; }
+        public abstract int CountChar { get; set; }
     }
 }
