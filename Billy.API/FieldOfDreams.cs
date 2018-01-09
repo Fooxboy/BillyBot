@@ -23,7 +23,7 @@ namespace Billy.API
         {
             var method = new Database.Methods("FieldOfDreams");
             var id = (long)method.GetFromId(228161, "Creator");
-            string fields = @"`Id`, `Question`, `Answer`, `Creator`, `DialogId`, `Compete`, `Proccess`";
+            string fields = @"`Id`, `Question`, `Answer`, `Creator`, `DialogId`, `Complete`, `Proccess`";
 
             string values = $@"'{id}', '{question}' , 'нет', '{creator}', '0', '0', '[][][][][][]'";
             method.Add(fields, values);
@@ -53,6 +53,7 @@ namespace Billy.API
         public override int CountChar
         {
             get => Convert.ToInt32((long)method.GetFromId(id, "CountChar"));
+            set => method.EditField(id, "CountChar", value);
         }
     }
 }

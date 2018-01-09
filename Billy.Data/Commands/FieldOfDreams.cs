@@ -13,7 +13,7 @@ namespace Billy.Data.Commands
         public static string NoIdOrAnwser = $"Вы не указали ID или ОТВЕТ. Укажите в таком виде: Билли, пч отв ID ОТВЕТ";
         public static string NoId = "Неверный ID.";
         public static string NoCreator = "Вы не создатель этой игры.";
-        public static string ReadyCreateAnswer = "Вы добавлили ответ к игре! Чтобы привязать игру к определённой беседе и начать играть, напишите в нужной беседе: Билли пч зайти ID.";
+        public static string ReadyCreateAnswer = "Вы добавлили ответ к игре! Чтобы привязать игру к определённой беседе и начать играть, напишите в нужной беседе: Билли пч войти ID.";
         public static string NoQuesstion = "Вы не указали вопрос.";
         public static string ReadyCreate(int id)
         {

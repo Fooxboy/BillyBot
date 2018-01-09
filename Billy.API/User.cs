@@ -139,7 +139,7 @@ namespace Billy.API
         public override int FieldOfDreams
         {
             get => Convert.ToInt32((long)method.GetFromId(_id, "FieldOfDreams"));
-            set => method.EditField(_id, "Clan", value);
+            set => method.EditField(_id, "FieldOfDreams", value);
         }
     }
 }

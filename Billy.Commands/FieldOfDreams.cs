@@ -116,7 +116,7 @@ namespace Billy.Commands
                                     if (game.Creator == userId)
                                     {
                                         game.DialogId = dialogId;
-                                        user.FieldOfDreams = id;
+                                        user.FieldOfDreams = game.Id;
                                         result = Data.Commands.FieldOfDreams.ReadyAdded;
                                     }
                                     else result = Data.Commands.FieldOfDreams.IsNotCreatorAdd;
@@ -127,7 +127,7 @@ namespace Billy.Commands
                                     {
                                         if (user.FieldOfDreams == 0)
                                         {
-                                            user.FieldOfDreams = id;
+                                            user.FieldOfDreams = game.Id;
                                             result = Data.Commands.FieldOfDreams.ReadyEnter;
                                         }
                                         else result = Data.Commands.FieldOfDreams.UserInPlayOther;
@@ -165,7 +165,7 @@ namespace Billy.Commands
                             if (game.DialogId == API.Converter.ToChatId(message.PeerId))
                             {
                                 var word = arguments[3];
-                                if(word == game.Proccess)
+                                if(word == game.Answer)
                                 {
                                     game.Complete = true;
                                     result = Data.Commands.FieldOfDreams.WinWord;
@@ -195,7 +195,6 @@ namespace Billy.Commands
 
             if(message.Type == Enums.LongPoll.TypeMessage.Chat)
             {
-
                 if (arguments.Length == 4)
                 {
                     var user = new API.User(message.From);
@@ -229,10 +228,9 @@ namespace Billy.Commands
                                     game.CountChar -= countLetter;
                                     if (game.CountChar == 0 || game.CountChar < 0)
                                     {
-                                        //игра закончена.
                                         game.Complete = true;
                                     }
-
+                                    game.Proccess = resultProccess;
                                     result = Data.Commands.FieldOfDreams.ReadyWin(countLetter, resultProccess, game.Complete);
                                 }
                                 else result = Data.Commands.FieldOfDreams.ReadyLose;
@@ -255,7 +253,7 @@ namespace Billy.Commands
 
             if (message.Type == Enums.LongPoll.TypeMessage.Dialog)
             {
-                if (arguments.Length < 3)
+                if (arguments.Length > 3)
                 {
                     var quest = "";
                     for (int i = 3; arguments.Length > i; i++) quest += $"{arguments[i]} ";
@@ -287,7 +285,8 @@ namespace Billy.Commands
                         {
                             int count = answer.Length;
                             var proccess = "";
-                            for (int i = 0; count < i; i++) proccess += "[?] ";
+                            for (int i = 0; count > i; i++) proccess += "[?] ";
+                            game.Answer = answer;
                             game.Proccess = proccess;
                             game.CountChar = count;
                             result = Data.Commands.FieldOfDreams.ReadyCreateAnswer;
