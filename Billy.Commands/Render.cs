@@ -37,7 +37,8 @@ namespace Billy.Commands
                 new Mafia(),
                 new Clans(),
                 new Meme(),
-                new Love()
+                new Love(),
+                new FieldOfDreams()
             };
             Render.Commands = commands;
         }
@@ -80,7 +81,6 @@ namespace Billy.Commands
                 }
             }
         }
-
 
         public static void RunCommandExecute(object mod)
         {

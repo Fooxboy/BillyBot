@@ -37,8 +37,14 @@ namespace Billy.Commands
                     case "буква":
                         result = Char(message, arguments);
                         break;
+                    case "слово":
+                        result = Word(message, arguments);
+                        break;
+                    case "вопрос":
+                        result = Quesstion(message.From);
+                        break;
                     default:
-                        //Неизвестная подкоманда
+                        result = Data.Commands.FieldOfDreams.NotCommand;
                         break;
                 }
             }
@@ -50,6 +56,20 @@ namespace Billy.Commands
                 Message = result,
                 From = message.From
             });
+        }
+
+        private string Quesstion(long userId)
+        {
+            string result = "Неизвестная ошибка.";
+
+            var user = new API.User(userId);
+            if(user.FieldOfDreams != 0)
+            {
+                var game = new API.FieldOfDreams(user.FieldOfDreams);
+                result = $"ВАШ ВОПРОС: {game.Question}";
+            }else result = Data.Commands.FieldOfDreams.InNotGame;
+
+            return result;
         }
 
         private string Leave(Message message)
@@ -122,6 +142,49 @@ namespace Billy.Commands
                 }
                 else result = Data.Commands.FieldOfDreams.NotId;
             } else result = Data.Commands.FieldOfDreams.InChat;
+
+            return result;
+        }
+
+
+        private string Word(Message message, string[] arguments)
+        {
+            string result = "Неизвестная ошибка.";
+
+            if(message.Type == Enums.LongPoll.TypeMessage.Chat)
+            {
+
+                if(arguments.Length == 4)
+                {
+                    var user = new API.User(message.From);
+                    if(user.FieldOfDreams != 0)
+                    {
+                        var game = new API.FieldOfDreams(user.FieldOfDreams);
+                        if(!game.Complete)
+                        {
+                            if (game.DialogId == API.Converter.ToChatId(message.PeerId))
+                            {
+                                var word = arguments[3];
+                                if(word == game.Proccess)
+                                {
+                                    game.Complete = true;
+                                    result = Data.Commands.FieldOfDreams.WinWord;
+                                }
+                                else result = Data.Commands.FieldOfDreams.LoseWord;
+                            }
+                            else result = Data.Commands.FieldOfDreams.GameInChatId;
+
+                        }
+                        else result = Data.Commands.FieldOfDreams.GameIsComptele;
+
+                    }
+                    else result = Data.Commands.FieldOfDreams.InNotGame;
+
+                }
+                else result = Data.Commands.FieldOfDreams.NoWord;
+
+            }
+            else result = Data.Commands.FieldOfDreams.InChat;
 
             return result;
         }

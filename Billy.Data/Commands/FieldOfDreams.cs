@@ -55,5 +55,11 @@ namespace Billy.Data.Commands
 
             return result;
         }
+        public static string NoWord = "Вы не указали слово!";
+        public static string WinWord = "ВЫ УГАДАЛИ СЛОВО! УРАА!" +
+            "\nИгра закончена. Начинайте новую!" +
+            "\nНо для начала выйдите с этой, написав: Билли, пч выйти" +
+            "\nДа, я ленивый, мне было лень делать это автоматически)()(";
+        public static string LoseWord = "ХАХАХАХ, НЕТ, НЕ ВЕРНО! Какой самоуверненный. Нет, не верно.";
     }
 }
