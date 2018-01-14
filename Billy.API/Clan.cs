@@ -59,8 +59,7 @@ namespace Billy.API
                 method.EditField(_id, "Members", value);
             }
         }
-
-        
+     
 
         public override string Date
         {

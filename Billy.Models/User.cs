@@ -18,5 +18,6 @@ namespace Billy.Models
         public abstract int DonateCount { get; set; }
         public abstract int Clan { get; set; }
         public abstract int FieldOfDreams { get; set; }
+        public abstract int Mafia { get; set; }
     }
 }

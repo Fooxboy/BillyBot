@@ -141,5 +141,11 @@ namespace Billy.API
             get => Convert.ToInt32((long)method.GetFromId(_id, "FieldOfDreams"));
             set => method.EditField(_id, "FieldOfDreams", value);
         }
+
+        public override int Mafia
+        {
+            get => Convert.ToInt32((long)method.GetFromId(_id, "Mafia"));
+            set => method.EditField(_id, "Mafia", value);
+        }
     }
 }

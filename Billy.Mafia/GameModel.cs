@@ -4,14 +4,16 @@ using System.Text;
 
 namespace Billy.Mafia
 {
-    public class GameModel
+    public abstract class GameModel
     {
-        public int Id { get; set; }
-        public long GroupId { get; set; }
-        public List<long> FullPlayers { get; set; }
-        public List<long> PlayPlayers { get; set; }
-        public List<int> FullRoles { get; set; }
-        public List<int> PlayRoles { get; set; }
-        public long UserCreate { get; set; }
+        public abstract int Id { get; }
+        public abstract long GroupId { get; set; }
+        public abstract List<long> FullPlayers { get; set; }
+        public abstract List<long> PlayPlayers { get; set; }
+        public abstract List<int> FullRoles { get; set; }
+        public abstract List<int> PlayRoles { get; set; }
+        public abstract long UserCreate { get; }
+        public abstract bool isStart { get; set; }
+        public abstract bool isEnd { get; set; }
     }
-}
+} 
