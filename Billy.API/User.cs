@@ -30,7 +30,10 @@ namespace Billy.API
         {
             var method = new Database.Methods("Users");
             string fields = @"`Id`, `Name`, `DateReg`";
-            string name = Data.GetVk().Users.Get(id).FirstName;
+            var list = new List<long>();
+            list.Add(id);
+            string name = Data.GetVk().Users.Get(list)[0].FirstName;
+
             string values = $@"'{id}', '{name}', '{DateTime.Now}'";
             method.Add(fields, values);
         }
